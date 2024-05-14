@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unsolved</title>
+    <style>
+      body {
+        background-size: cover;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .color a {
+        text-decoration: none;
+        color: blue;
+        font-weight: bold;
+        width: 5rem;
+      }
+      table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      th, td {
+        padding: 15px;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="color">
+      <a href="{{url_for('admindashboard')}}">Back</a>
+    </div>
+    <table>
+      <tr>
+        <th></th>
+        <th>Email</th>
+        <th>Problem</th>
+        <th>Address</th>
+        <th>Date & Time</th>
+        <th></th>
+      </tr>
+      {% for i in details %}
+      <tr>
+        <td><a href="{{url_for('view', id1=i['id'])}}">View</a></td>
+        <td>{{i['email']}}</td>
+        <td>{{i['problem']}}</td>
+        <td>{{i['address']}}</td>
+        <td>{{i['date']}}</td>
+        <td><a href="{{url_for('update', id1=i['id'])}}">Update</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

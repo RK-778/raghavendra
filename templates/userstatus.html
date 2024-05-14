@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+    />
+    <title>User Status</title>
+    <style>
+      body {
+        height: 100vh;
+        background-image: linear-gradient(blue, white);
+      }
+      * {
+        font-family: var(--font-base);
+      }
+      :root {
+        --c-dark: #212529;
+        --c-brand: #4e57d4;
+        --c-brand-light: #6970dd;
+        --c-brand-rgb: 78, 87, 212;
+        --c-body: #727272;
+        --font-base: "ClashDisplay", sans-serif;
+        --box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.08);
+        --transition: all 0.5s ease;
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      @font-face {
+        font-family: "ClashDisplay";
+        src: url("../static/fonts/ClashDisplay-Variable.woff2") format("woff2"),
+          url("../static/fonts/ClashDisplay-Variable.woff") format("woff"),
+          url("../static/fonts/ClashDisplay-Variable.ttf") format("truetype");
+        font-weight: 200 700;
+        font-display: swap;
+        font-style: normal;
+      }
+    
+
+      .card {
+        min-width: 388px;
+        background-image: linear-gradient(white, skyblue);
+        margin: 1rem;
+        text-align: left;
+        padding: 1rem;
+        background-color: #dff5ff;
+        border-radius: 1rem;
+        font-family: Arial, Helvetica, sans-serif;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+        width: 30%;
+      }
+
+      .status {
+        background-color: #5ab2ff;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        margin-top: 2rem;
+        box-shadow: 2px 2px 5px;
+        text-align: center;
+
+      }
+      .heading {
+        text-align: center;
+      }
+      p {
+        font-size: large;
+      }
+      /* SECTION TITLE */
+      .section-title {
+        margin-bottom: 60px;
+      }
+
+      .line {
+        width: 60px;
+        height: 4px;
+        background-color: #4e57d4;
+        margin: 16px auto 24px auto;
+      }
+
+      .section-title p {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .section-title .line {
+        width: 60px;
+        height: 4px;
+        background-color: var(--c-brand);
+        margin: 16px auto 24px auto;
+      }
+      .stat {
+        color: lightblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="section-title">
+      <h1 class="display-4 fw-semibold text-center stat">Status</h1>
+      <div class="line"></div>
+    </div>
+    <div class="container">
+      {% for i in details %}
+      <div class="card">
+        <h2>Email</h2>
+        <p>{{i['email']}}</p>
+        <h2>Problem</h2>
+        <p>{{i['problem']}}</p>
+        <h2>Categorie</h2>
+        <p>{{i['categorie']}}</p>
+        <div class="status">
+          <h2>Status:{{i['status']}}</h2>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  </body>
+</html>

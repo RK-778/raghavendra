@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+  </head>
+  <style>
+    body {
+      background-image: linear-gradient(blue, white);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    :root {
+      --c-dark: #212529;
+      --c-brand: #4e57d4;
+      --c-brand-light: #6970dd;
+      --c-brand-rgb: 78, 87, 212;
+      --c-body: #727272;
+      --font-base: "ClashDisplay", sans-serif;
+      --box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.08);
+      --transition: all 0.5s ease;
+    }
+    @font-face {
+      font-family: "ClashDisplay";
+      src: url("../static/fonts/ClashDisplay-Variable.woff2") format("woff2"),
+        url("../static/fonts/ClashDisplay-Variable.woff") format("woff"),
+        url("../static/fonts/ClashDisplay-Variable.ttf") format("truetype");
+      font-weight: 200 700;
+      font-display: swap;
+      font-style: normal;
+    }
+    *{
+      font-family: var(--font-base);
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      max-width: 400px;
+      margin-top: 20px;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    .form-control {
+      height: 40px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      font-size: 18px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for message
+  in messages %}
+  <center><b>{{ message }}</b></center>
+  {% endfor %} {% endif %} {% endwith %}
+
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-5">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Login</h2>
+              <form method="POST">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input
+                    type="text"
+                    id="username"
+                    class="form-control"
+                    placeholder="Enter username"
+                    name="name"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    placeholder="Enter password"
+                    name="password"
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary" type="submit">
+                  Login
+                </button>
+                <p class="mb-0" style="margin-top: 1rem">
+                  Forgot Password
+                  <a href="{{url_for('forgot')}}" class="text-white-50 fw-bold"
+                    >Click here</a
+                  >
+                </p>
+                <p class="mb-0" style="margin-top: 1rem">
+                  Don't have an account?
+                  <a
+                    href="{{url_for( 'registration')}} "
+                    class="text-white-50 fw-bold"
+                    >Sign Up</a
+                  >
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

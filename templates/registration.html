@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <style>
+:root {
+  --c-dark: #212529;
+  --c-brand: #4e57d4;
+  --c-brand-light: #6970dd;
+  --c-brand-rgb: 78, 87, 212;
+  --c-body: #727272;
+  --box-shadow: 0px 15px 25px rgba(0,0,0,0.08);
+  --transition: all 0.5s ease;
+}
+
+body {
+  background-image: linear-gradient(blue, white);
+  font-family: var(--font-base);
+  padding: 2rem;
+}
+.card {
+  border: 0;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.075);
+}
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 0;
+}
+.card-body {
+  padding: 1.5rem;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.btn-primary {
+  margin-top: 1rem;
+}
+@font-face {
+      font-family: "ClashDisplay";
+      src: url("../static/fonts/ClashDisplay-Variable.woff2") format("woff2"),
+        url("../static/fonts/ClashDisplay-Variable.woff") format("woff"),
+        url("../static/fonts/ClashDisplay-Variable.ttf") format("truetype");
+      font-weight: 200 700;
+      font-display: swap;
+      font-style: normal;
+    }
+
+    :root {
+      --c-dark: #212529;
+      --c-brand: #4e57d4;
+      --c-brand-light: #6970dd;
+      --c-brand-rgb: 78, 87, 212;
+      --c-body: #727272;
+      --font-base: "ClashDisplay", sans-serif;
+      --box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.08);
+      --transition: all 0.5s ease;
+    }
+    *{
+      font-family: var(--c-body);
+    }
+
+  </style>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <center><b>{{ message }}</b></center>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h1 class="card-title text-center fw-bolder">Registration</h1>
+            </div>
+            <div class="card-body">
+              <form method="POST">
+
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" id="username" placeholder="Enter your username" name="username">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password" >
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" name="phno">
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" id="state" placeholder="Enter your state" name="state">
+                  </div>
+                <div class="form-group col-12">
+                  <label for="address">Address</label>
+                  <textarea class="form-control" id="address" rows="3" placeholder="Enter your address" name="address"></textarea>
+                </div>
+               
+                  <div class="form-group col-md-6">
+                    <label for="pincode">Pincode</label>
+                    <input type="text" class="form-control" id="pincode" placeholder="Enter your pincode" name="pincode">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Register</button>
+                <div class="checkbox">
+                  <p>Already have an account?<a href="{{url_for('login')}}" target="_blank">Log in</p></a>
+                  </div>
+            
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

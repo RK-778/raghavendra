@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Online Complaint Portal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
+    <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
+</head>
+<style>
+
+/* VARIABLES */
+:root {
+    --c-dark: #212529;
+    --c-brand: #4e57d4;
+    --c-brand-light: #6970dd;
+    --c-brand-rgb: 78, 87, 212;
+    --c-body: #727272;
+    --font-base: "ClashDisplay", sans-serif;
+    --box-shadow: 0px 15px 25px rgba(0,0,0,0.08);
+    --transition: all 0.5s ease;
+}
+.process {
+    display: flex;
+    justify-content: space-around;
+    
+}
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('../static/fonts/ClashDisplay-Variable.woff2') format('woff2'),
+       url('../static/fonts/ClashDisplay-Variable.woff') format('woff'),
+       url('../static/fonts/ClashDisplay-Variable.ttf') format('truetype');
+       font-weight: 200 700;
+       font-display: swap;
+       font-style: normal;
+}
+/* RESET & HELPERS */
+body {
+    font-family: var(--font-base);
+    line-height: 1.7;
+    color: var(--c-body);
+}
+
+h1, h2, h3,h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 600;
+    color: var(--c-dark);
+}
+
+a {
+    text-decoration: none;
+    color: var(--c-brand);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--c-brand-light);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.section-padding {
+    padding-top: 140px;
+    padding-bottom: 140px;
+}
+
+.theme-shadow {
+    box-shadow: var(--box-shadow);
+}
+
+/* IMAGE ZOOM */
+.image-zoom {
+    position: relative;
+    /* overflow: hidden; */
+}
+
+.image-zoom-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.image-zoom-wrapper img{
+     transition: var(--transition);
+}
+
+.image-zoom:hover .image-zoom-wrapper img {
+    transform: scale(1.1);
+}
+
+/* NAVBAR */
+.navbar {
+    box-shadow: var(--box-shadow);
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+    color: var(--c-dark);
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--c-brand);
+}
+
+/* BTN */
+.btn {
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 0;
+    padding: 10px 24px;
+}
+
+.btn-brand {
+    background-color: var(--c-brand);
+    border-color: var(--c-brand);
+    color: white;
+}
+
+.btn-brand:hover {
+    background-color: var(--c-brand-light);
+    border-color: var(--c-brand-light);
+    color: white;
+}
+
+/* HERO */
+#hero {
+    background: linear-gradient(rgba(var(--c-brand-rgb), 0.507), rgba(var(--c-brand-rgb), 0.438)), url(../images/suneeth-kumar-b-nAih-omUWlw-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+/* SECTION TITLE */
+.section-title {
+    margin-bottom: 60px;
+}
+
+.section-title .line {
+    width: 60px;
+    height: 4px;
+    background-color: var(--c-brand);
+    margin: 16px auto 24px auto;
+}
+.section-title p {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* ICONBOX */
+.iconbox {
+    width: 70px;
+    height: 70px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--c-brand-rgb), 0.1);
+    color: var(--c-brand);
+    font-size: 34px;
+    flex: none;
+}
+
+/* SERVICE */
+.service {
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    padding: 3rem;
+}
+
+.service::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    background: rgba(var(--c-brand-rgb), 0.2);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transition: var(--transition);
+}
+
+
+.service:hover::after {
+    width: 100%;
+    height: 100%;
+    background: var(--c-brand);
+    z-index: -1;
+}
+
+.service:hover h5,
+.service:hover p {
+    color: white;
+}
+
+.service:hover .iconbox {
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+}
+
+/* PORTFOLIO */
+.portfolio-item .iconbox {
+    background-color: var(--c-brand);
+    color: white;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+.portfolio-item:hover .iconbox {
+    opacity: 1;
+    top: 50%;
+}
+
+/* REVIEW */
+.review small {
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--c-brand);
+}
+
+.review-head {
+    position: relative;
+}
+
+.review-head::after {
+    content: "";
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    bottom: -14px;
+    background-color: white;
+    transform: rotate(45deg);
+}
+
+/* TEAM */
+.team-member-content {
+    background-color: var(--c-brand);
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    width: calc(100% - 50px);
+    transform: translateX(-50%);
+    padding: 24px;
+    transition: var(--transition);
+    opacity: 0;
+}
+
+.team-member:hover .team-member-content {
+    opacity: 1;
+    bottom: 24px;
+}
+
+/* CONTACT */
+#contact {
+    position: relative;
+    z-index: 2;
+}
+
+#contact::after {
+    content: "";
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(rgba(var(--c-brand-rgb), 0.8), rgba(var(--c-brand-rgb), 0.8));
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#contact .form-control {
+    border-radius: 0;
+}
+
+#contact .form-control:focus {
+    box-shadow: none;
+    border-color: var(--c-brand);
+}
+
+/* FOOTER */
+footer {
+    padding-top: 120px;
+}
+
+.footer-top {
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-bottom {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+
+footer li,
+footer p,
+footer a {
+    color: rgba(255,255,255,0.7);
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer .line {
+    width: 40px;
+    height: 4px;
+    background-color: var(--c-brand);
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 100px;
+}
+
+.social-icons a:hover {
+    background-color: var(--c-brand);
+    color: white;
+}
+.last{
+    width: 100%;
+}
+        /*#go{
+    color:black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border: none;
+    
+}
+#go:hover{
+
+color: #c90202;
+    
+}
+#go1{
+    background-color: #c90202;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border: none;
+}
+#go1:hover{
+    background-color: gray;
+    color:#c90202
+}*/
+        /*resturant button*/
+        
+        .btn {
+            border-color: blue;
+        }
+        
+        .btn:focus {
+            border-radius: 5%;
+            color: #c90202;
+            border-color: green;
+        }
+        
+        .head1 {
+            font-size: 180px;
+            font-weight: bold;
+            /* ?color:rgba(9, 186, 47, 0.786); */
+            font-family: 'Courier New', Courier, monospace;
+            color: rgba(26, 95, 164, 0.8);
+            font-size: 48pt;
+            text-align: center;
+        }
+        
+        .head {
+            margin-top: 200px;
+            margin-left: 20%;
+            margin-right: 20%;
+            font-weight: bold;
+        }
+        
+        .bgimg {
+            background-image: url('https://i.ytimg.com/vi/mzLOJf2RdyA/maxresdefault.jpg');
+            /* background-image:url("nvimg.jpeg"); */
+            background-size: cover;
+            height: 80vh;
+        }
+        
+        .paraline {
+            color: rgb(92, 16, 222);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 55px;
+            font-weight: bolder;
+        }
+        
+        .bgcolor {
+            background-color: #f9fbfe;
+        }
+        
+        .head2 {
+            color: #183b56;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .para2 {
+            color: #5081a9;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+        }
+        
+        .carding {
+            text-align: center;
+            background-color: white;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #e5eaf4;
+            border-radius: 16px;
+        }
+        
+        .cardimg {
+            width: 100px;
+            height: 120px;
+        }
+        
+        .chead {
+            color: #323f4b;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        
+        .cpara {
+            color: #7b8794;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+        }
+        
+        .bgcolor3 {
+            background-color: white;
+        }
+        
+        .explorehead {
+            color: #183b56;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .explorecards {
+            border-radius: 16px;
+        }
+        
+        .exploreimage {
+            border-radius: 16px;
+        }
+        
+        .cardhead4 {
+            color: #323f4b;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 24px;
+        }
+        
+        .explorelink {
+            color: #c90202;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        a{
+            color: white;
+        }
+        
+        .services {
+            margin-left: 10%;
+            color: #183b56;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .w {
+            width: 95%;
+            color: black;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            border: 1px;
+        }
+        
+        .w:hover {
+            color: orange;
+            box-shadow: 0 4px 8px 0 orange;
+        }
+        
+        #contact {
+            background-color: grey;
+            padding-bottom: 4em;
+        }
+        
+        #navbarNavAltMarkup {
+            margin-left: 80%;
+        }
+        
+        button {
+            size: 20pc;
+        }
+        
+        .cm {
+            margin-top: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        
+        .cm img {
+            border-radius: 50%;
+            width: 30%;
+            text-align: center;
+        }
+        
+        .cm a {
+            border: 1px solid rgba(0, 0, 0, 0.4);
+            padding: 0.4%;
+            font-size: 20px;
+            color: black
+        }
+        #hero{
+            background-image: url("../static/suneeth-kumar-b-nAih-omUWlw-unsplash.jpg");
+        }
+
+</style>
+<body data-bs-spy="scroll" data-bs-target=".navbar">
+
+    <!-- NAVBAR -->
+    <!-- <nav class="navbar navbar-expand-lg bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <h1>Online Complaint Portal</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Our Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('login')}}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('registration')}}">Signup</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> -->
+    <nav class="navbar navbar-expand-lg bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <h1>Online Complaint Portal</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Home</a>
+                    </li>
+                    {% if not session.get('user') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Our Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('login')}}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('registration')}}">Signup</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('user')}}">Status</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link"><i class="las la-user-circle" style="font-size: 24px;"></i>{{session.get('user')}}</a></li> 
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+            <!-- <form>
+            <i class="fa-solid fa-house" style="color:white;font-size:10px;"></i><a class="nav-link active" href="/" style="color:white; font-size:20px;">Home <span class="sr-only"></span></a> {% if not session.get('user') %}
+
+            <i class="fa-solid fa-right-to-bracket" style="color:white;font-size:10px;"></i><a class="nav-link" href="{{url_for('registration')}}" style="color:white;font-size:20px;">Signup</a>
+            <i class="fa-solid fa-right-to-bracket" style="color:white;font-size:10px;"></i><a class="nav-link" href="{{url_for('login')}}" style="color:white;font-size:20px;">login</a> {% else %}
+            <i class="fa-solid fa-right-to-bracket" style="color:white;font-size:10px;margin-left:70%"></i><a class="nav-link" href="{{url_for('logout')}}" style="color:white;font-size:20px;margin-right:11px;">logout</a>
+            <i class="fa-solid fa-right-to-bracket" style="color:white;font-size:10px;"></i><a class="nav-link" href="{{url_for('user')}}" style="color:white;font-size:20px;">status</a>
+            <b>{{session.get('user')}}</b> {% endif %}
+            </form> -->
+
+
+        </nav>
+
+
+    <!-- HERO -->
+    <section id="hero" class="min-vh-100 d-flex align-items-center text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-uppercase text-white fw-semibold display-1">Greater Muncipal Corporation</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SERVICES -->
+    <section id="services" class="section-padding border-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="section-title">
+                        <h1 class="display-4 fw-semibold">Our Services</h1>
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 text-center">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service theme-shadow p-lg-5 p-4">
+                        <img src="../static/streetlight.jpg">
+                        <h5 class="mt-4 mb-3">Street Lights</h5>
+                        <a href="complaintform.html" class="explorelink"><a href="{{url_for('complaint')}}">view more </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service theme-shadow p-lg-5 p-4">
+                        <img src="../static/water-pipe.jpg">
+                        <h5 class="mt-4 mb-3">Water Pipe Leakage</h5>
+                        <a href="complaintform.html" class="explorelink"><a href="{{url_for('complaint')}}"font-size:40px;>view more</a>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service theme-shadow p-lg-5 p-4">
+                        <img src="../static/rain-water.jpg">
+                        <h5 class="mt-4 mb-3">Rain Water</h5>
+                        <a href="complaintform.html" class="explorelink"><a href="{{url_for('complaint')}}"font-size:40px;>view more </a>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service theme-shadow p-lg-5 p-4">
+                        <img src="../static/road.jpg">
+                        <h5 class="mt-4 mb-3">Road</h5>
+                        <a href="complaintform.html" class="explorelink"><a href="{{url_for('complaint')}}"font-size:40px;>view more </a>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service theme-shadow p-lg-5 p-4">
+                        <img src="../static/water-pollution.jpg">
+                        <h5 class="mt-4 mb-3">Drinage Overflow</h5>
+                        <a href="complaintform.html" class="explorelink"><a href="{{url_for('complaint')}}"font-size:40px;>view more </a>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service theme-shadow p-lg-5 p-4">
+                        <img src="../static/power-cut.jpg">
+                        <h5 class="mt-4 mb-3">Power Cut</h5>
+                        <a href="complaintform.html" class="explorelink"><a href="{{url_for('complaint')}}"font-size:40px;>view more </a>
+
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="section-title">
+                        <h1 class="display-4 fw-semibold">Process</h1>
+                        <div class="line"></div>
+                        <div class="process">
+                    </div>
+                </div>
+            </div>
+            <div class="col-3" data-aos="fade-up">
+                <div class="service theme-shadow bg-base rounded-4">
+                    <div class="iconbox rounded-4">
+                        <i class="las la-sign-in-alt"></i>
+                    </div>
+                    <h5 class="mt-4 mb-2">Step 1</h5>
+                    <h5>Register</h5>
+                    <p>Click on signup on the above navbar to create an account in Online Complaint Portal. </p>
+                </div>
+            </div>
+            <div class="col-3" data-aos="fade-up">
+                <div class="service theme-shadow bg-base rounded-4">
+                    <div class="iconbox rounded-4">
+                        <i class="las la-key"></i>
+                    </div>
+                    <h5 class="mt-4 mb-2">Step 2</h5>
+                    <h5>Login</h5>
+                    <p>Click on Login on the above navbar and enter your email and password to login into Online Complaint Portal.</p>
+                </div>
+            </div>
+
+            <div class="col-3" data-aos="fade-up">
+                <div class="service theme-shadow bg-base rounded-4">
+                    <div class="iconbox rounded-4">
+                        <i class="las la-file-alt"></i>                    
+                    </div>
+                    <h5 class="mt-4 mb-2">Step 3</h5>
+                    <h5>File a Complaint</h5>
+                    <p>After loging in click on file a complaint and file your complaint.</p>
+                </div>
+            </div>
+            <div class="col-3" data-aos="fade-up">
+                <div class="service theme-shadow bg-base rounded-4">
+                    <div class="iconbox rounded-4">
+                        <i class="las la-lightbulb"></i>
+                    </div>
+                    <h5 class="mt-4 mb-2">Step 4</h5>
+                    <h5>Solution</h5>
+                    <p>After filing a complaint get a solution for it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section-padding bg-light" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="section-title">
+                        <h1 class="display-4 text-white fw-semibold">Contact Us</h1>
+                        <div class="line bg-white"></div>   
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form action="#" method="post" class="row g-3 p-lg-5 p-4 bg-white theme-shadow">
+                        <div class="form-group col-lg-12">
+                            <input type="text" class="form-control" placeholder="Enter first name" name="name">
+                        </div>
+                        
+                        <div class="form-group col-lg-12">
+                            <input type="email" class="form-control" placeholder="Enter Email address" name="emailid">
+                        </div>
+                        
+                        <div class="form-group col-lg-12">
+                            <textarea name="message" rows="5" class="form-control" placeholder="Enter Message" name="message"></textarea>
+                        </div>
+                        <div class="form-group col-lg-12 d-grid">
+                            <button class="btn btn-brand" type="submit">Send Message</button>
+                            
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5 text-center">
+        <p>site developed by RK and Goku<sup>©</sup></p>
+    </div>
+    </section>
+    
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+</body>
+
+</html>
